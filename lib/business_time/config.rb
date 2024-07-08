@@ -30,6 +30,10 @@ module BusinessTime
       attr_accessor :holidays
 
     end
+
+    DAY_NAMES = [
+      'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'
+    ]
     
     def self.work_week=(days)
       @work_week = days
@@ -39,7 +43,7 @@ module BusinessTime
     def self.weekdays
       return @weekdays unless @weekdays.nil?
       
-      lowercase_day_names = ::Time::RFC2822_DAY_NAME.map(&:downcase)
+      lowercase_day_names = DAY_NAMES.map(&:downcase)
       
       @weekdays = work_week.each_with_object([]) do |day_name, days|
         day_num = lowercase_day_names.find_index(day_name.to_s.downcase)
